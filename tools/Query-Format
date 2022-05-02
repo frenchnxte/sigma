@@ -1,0 +1,60 @@
+let var1 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var2 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var3 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var4 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var5 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var6 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var7 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var8 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var9 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var10 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var11 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var12 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+let var13 = view() {
+DeviceProcessEvents
+| where ()
+| extend Desc1 = ".", Desc2 = ".", Reference2 = "", Severity = "Medium", FalsePositives = "Unknown."};
+union isfuzzy=true var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13
+| extend Reference1 = "https://attack.mitre.org/techniques/T1218/"
+| parse kind=regex flags=i DeviceName with * "^" Hostname "\\.(hq|unit|test|dev|acc|its)\\.mvphealthcare.com"
+| extend DNSdomain = split(DeviceName,".")
+| extend DNSdomain = strcat(tostring(DNSdomain[1]),".",tostring(DNSdomain[2]),".",tostring(DNSdomain[3]))
+| extend VirusTotalReport = strcat("https://www.virustotal.com/gui/file/",SHA256)
+| extend ATPReport = strcat("https://security.microsoft.com/files/",SHA256,"/overview")
+| project TimeGenerated, Severity, Reference1, Desc1, Desc2, FalsePositives, Reference2, DeviceName,AccountDomain,AccountName,FileName,FolderPath,ProcessCommandLine,InitiatingProcessFolderPath,InitiatingProcessFileName,InitiatingProcessCommandLine,InitiatingProcessParentFileName,AccountSid, DeviceId, Hostname, AccountObjectId, AccountUpn, SHA256, HashType="SHA256", VirusTotalReport,ATPReport,InitiatingProcessAccountSid, InitiatingProcessAccountName, InitiatingProcessAccountObjectId, InitiatingProcessId, InitiatingProcessTokenElevation, ProcessId, ProcessTokenElevation,DNSdomain
